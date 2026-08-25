@@ -35,6 +35,7 @@ async function parseFormBody(req: VercelRequest): Promise<FormBody> {
 }
 
 function writeOAuthError(res: VercelResponse, code: string, description?: string): void {
+  console.error('OAuth token error:', code, description ?? '');
   const payload: Record<string, string> = { error: code };
   if (description) payload.error_description = description;
   res.status(400).json(payload);
